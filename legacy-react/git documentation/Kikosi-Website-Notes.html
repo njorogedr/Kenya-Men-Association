@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kikosi Website Notes</title>
+    <style>
+      :root {
+        --bg: #f7f8fc;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #4b5563;
+        --primary: #1d4ed8;
+        --primary-soft: #dbeafe;
+        --border: #dfe3ea;
+        --success: #166534;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+      }
+
+      .page {
+        max-width: 980px;
+        margin: 40px auto;
+        padding: 32px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      }
+
+      h1, h2, h3 {
+        color: var(--text);
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: 2.3rem;
+        border-bottom: 3px solid var(--primary-soft);
+        padding-bottom: 12px;
+      }
+
+      h2 {
+        margin-top: 28px;
+        padding-top: 12px;
+        border-top: 1px solid var(--border);
+        font-size: 1.5rem;
+      }
+
+      ul, ol {
+        padding-left: 22px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      code, pre {
+        background: #f3f4f6;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-family: Consolas, monospace;
+      }
+
+      pre {
+        padding: 14px 16px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+
+      .note {
+        background: var(--primary-soft);
+        border-left: 4px solid var(--primary);
+        padding: 12px 14px;
+        border-radius: 10px;
+        margin: 16px 0;
+      }
+
+      .card {
+        background: #f9fafb;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 18px;
+        margin: 16px 0;
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+
+        .page {
+          box-shadow: none;
+          border: none;
+          margin: 0;
+          max-width: 100%;
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1>Kikosi Website Project Notes</h1>
+
+      <div class="note">
+        This document summarizes the full project workflow, from creating the React app to deployment on GitHub and Vercel.
+      </div>
+
+      <h2>1. Project Setup</h2>
+      <pre>npm create vite@latest kikosi-site -- --template react
+cd kikosi-site
+npm install</pre>
+
+      <h2>2. Copy Original Static Files</h2>
+      <ul>
+        <li>Copy the CSS file from the original static site into the React app.</li>
+        <li>Copy images and assets into the new project folder.</li>
+      </ul>
+
+      <pre>copy C:\Users\user\Desktop\kikosi-website\css\styles.css C:\Users\user\Desktop\kikosi-site\src\styles\index.css
+robocopy C:\Users\user\Desktop\kikosi-website\assets C:\Users\user\Desktop\kikosi-site\src\assets /E</pre>
+
+      <h2>3. Convert to React Components</h2>
+      <ul>
+        <li>Header</li>
+        <li>HeroSection</li>
+        <li>AboutSection</li>
+        <li>StatsSection</li>
+        <li>EventsSection</li>
+        <li>CalendarSection</li>
+        <li>LeadershipSection</li>
+        <li>FaqSection</li>
+        <li>DonateSection</li>
+        <li>Footer</li>
+      </ul>
+
+      <h2>4. Keep Repeated Data in Arrays</h2>
+      <div class="card">
+        <p>Best practice: keep repeated card content in data files instead of copy-pasting in components.</p>
+        <ul>
+          <li>leaders.js</li>
+          <li>posters.js</li>
+          <li>faqs.js</li>
+        </ul>
+      </div>
+
+      <h2>5. Move Logic into Hooks</h2>
+      <ul>
+        <li>useMenuToggle for mobile menu behavior</li>
+        <li>useCountdown for event countdown logic</li>
+        <li>useCarousel for auto-scrolling carousel behavior</li>
+      </ul>
+
+      <h2>6. Carousel Fix</h2>
+      <p>The carousel should:</p>
+      <ul>
+        <li>auto-scroll every few seconds</li>
+        <li>pause on hover, focus, or touch</li>
+        <li>resume after a short delay</li>
+        <li>loop back to the start</li>
+        <li>use actual width and scroll values</li>
+      </ul>
+
+      <pre>const maxScroll = Math.max(node.scrollWidth - node.clientWidth, 0);
+
+if (node.scrollLeft >= maxScroll - 2) {
+  node.scrollTo({ left: 0, behavior: 'smooth' });
+  return;
+}
+
+step(1);</pre>
+
+      <h2>7. Improve Accessibility & SEO</h2>
+      <ul>
+        <li>clear focus states for keyboard users</li>
+        <li>semantic headings</li>
+        <li>good contrast and readable text</li>
+        <li>meaningful page title</li>
+        <li>meta description</li>
+        <li>Open Graph tags</li>
+        <li>favicon and web manifest</li>
+        <li>robots.txt and sitemap.xml</li>
+      </ul>
+
+      <h2>8. Build the Site</h2>
+      <pre>npm run build</pre>
+
+      <p>Successful output should look similar to:</p>
+      <pre>vite build
+✓ built in 651ms</pre>
+
+      <h2>9. Run the Local Preview</h2>
+      <pre>npm run dev -- --host 0.0.0.0</pre>
+      <p>Then open:</p>
+      <pre>http://localhost:5173/</pre>
+
+      <h2>10. Push to GitHub</h2>
+      <pre>git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin &lt;your-github-repo-url&gt;
+git push -u origin main</pre>
+
+      <h2>11. Deploy to Vercel</h2>
+      <ol>
+        <li>Open Vercel</li>
+        <li>Click New Project</li>
+        <li>Import the GitHub repository</li>
+        <li>Use the default Vite/React settings</li>
+        <li>Deploy</li>
+      </ol>
+
+      <h2>12. Best-Practice Website Checklist</h2>
+      <ul>
+        <li>Mobile layout works well</li>
+        <li>No broken links</li>
+        <li>Buttons and menu work correctly</li>
+        <li>Carousel works smoothly</li>
+        <li>Page title and meta description are correct</li>
+        <li>Images are optimized</li>
+        <li>Site is keyboard-friendly</li>
+        <li>Preview cards look good when shared</li>
+      </ul>
+
+      <h2>13. Final Summary</h2>
+      <p>
+        The project was migrated from a static website into a Vite + React app, improved for quality and SEO, and prepared for GitHub + Vercel hosting.
+        The main technical fix was making the carousel auto-scroll correctly without relying on a guessed fixed distance.
+      </p>
+
+      <div class="note">
+        To save this page as a PDF, open it in a browser and use Print → Save as PDF.
+      </div>
+    </div>
+  </body>
+</html>

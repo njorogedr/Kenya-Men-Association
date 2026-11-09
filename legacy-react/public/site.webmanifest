@@ -1,0 +1,9 @@
+{
+  "name": "Kikosi Cha Wanaume Kenya",
+  "short_name": "Kikosi Kenya",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#14110F",
+  "theme_color": "#14110F",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
