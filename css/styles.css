@@ -255,3 +255,10 @@ section#top{padding-top:48px!important;padding-bottom:56px!important}
 .u187{margin-top:48px}
 .u188{margin:0;padding-top:20px;border-top:1px solid #4A443C;text-align:center;font:400 14px/1.7 Inter,sans-serif;color:#CFC8BB}
 .u189{color:#F4F1EA}
+
+@media(min-width:1140px){
+.u3{flex-wrap:nowrap}
+.u4{display:flex;flex-direction:column;flex-shrink:0;gap:3px}
+.u7{flex-wrap:nowrap;justify-content:flex-end;gap:clamp(8px,1vw,14px);min-width:0}
+.u7 a{white-space:nowrap;text-decoration:none}
+}
