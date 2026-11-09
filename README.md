@@ -1,5 +1,7 @@
 # Kikosi Cha Wanaume Kenya | Kenya Men Association: website
 
+GitHub repository: `Kenya-Men-Association`
+
 A plain HTML, CSS and JavaScript version of the site. No build step, no installs.
 
 ## 1. Run it in VS Code
